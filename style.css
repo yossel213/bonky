@@ -1,0 +1,227 @@
+/* =========================================================
+   Cofres de cariño 🐾 — landing + chrome del juego
+   Paleta: crepúsculo mágico (lavanda → rosa → durazno)
+   ========================================================= */
+
+:root {
+  --sky-top: #c9aef2;
+  --sky-mid: #ffc2dd;
+  --sky-bottom: #ffdfb0;
+  --hill-1: #7bcf9a;
+  --hill-2: #5cb885;
+  --wood: #b5793f;
+  --wood-dark: #8a5a2b;
+  --gold: #f0c869;
+  --cream: #fff8ef;
+  --ink: #4a3b52;
+  --purple: #8a6fd8;
+  --lavender: #b6a3f2;
+
+  --font-display: "Quicksand", "Trebuchet MS", sans-serif;
+  --font-body: "Nunito", "Segoe UI", sans-serif;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: linear-gradient(180deg, #efe3fb 0%, #fdeef4 45%, #fff6ea 100%);
+}
+
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 28px 18px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero { margin-bottom: 18px; }
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--purple);
+  margin: 0 0 6px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 7vw, 2.2rem);
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.hero h1 span { color: var(--purple); }
+
+.subtitle {
+  margin: 0 0 14px;
+  line-height: 1.55;
+  color: #6a5c78;
+  font-size: 0.98rem;
+}
+
+.counter {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  background: rgba(138, 111, 216, 0.12);
+  color: var(--purple);
+  padding: 8px 16px;
+  border-radius: 999px;
+}
+
+/* =========================================================
+   ESCENA DEL JUEGO
+   ========================================================= */
+
+.game-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 18px 44px rgba(138, 111, 216, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  margin-top: 18px;
+  touch-action: none;
+}
+
+#gameCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.message-bubble {
+  width: 100%;
+  margin-top: 16px;
+  padding: 16px 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(138, 111, 216, 0.14), rgba(255, 194, 221, 0.22));
+  border: 1px solid rgba(138, 111, 216, 0.25);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 420ms var(--ease), transform 420ms var(--ease);
+}
+
+.message-bubble.show { opacity: 1; transform: translateY(0); }
+.message-bubble.hidden { display: none; }
+
+.hint {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: #8a7d94;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.reset-btn {
+  margin-top: 18px;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--purple), var(--lavender));
+  box-shadow: 0 8px 20px rgba(138, 111, 216, 0.35);
+  transition: transform 200ms var(--ease);
+}
+
+.reset-btn:hover { transform: translateY(-2px); }
+.reset-btn.hidden { display: none; }
+
+button:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+
+/* =========================================================
+   MODAL FINAL
+   ========================================================= */
+
+.finale {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(74, 59, 82, 0.55);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 380ms var(--ease);
+}
+
+.finale.hidden { display: none; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.finale-card {
+  max-width: 400px;
+  width: 100%;
+  background: var(--cream);
+  border-radius: 26px;
+  padding: 30px 26px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(74, 59, 82, 0.3);
+  animation: popIn 380ms var(--ease);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.finale-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin: 0 0 12px;
+  color: var(--purple);
+}
+
+.finale-line {
+  line-height: 1.7;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+
+.finale-line--last { font-family: var(--font-display); font-weight: 600; margin-top: 10px; }
+
+.finale-close {
+  margin-top: 16px;
+  border: none;
+  border-radius: 999px;
+  padding: 11px 26px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--purple), var(--lavender));
+  color: #fff;
+}
+
+/* =========================================================
+   ACCESIBILIDAD
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

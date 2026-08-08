@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Cofres de cariño 🐾</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="page">
+
+    <header class="hero">
+      <p class="eyebrow">🐾 un juego pequeño</p>
+      <h1>Cofres para <span id="recipientName">ti</span></h1>
+      <p class="subtitle">
+        Toca o desliza la escena para mover a <strong id="catNameLabel">Michi</strong>.
+        Cada cofre que se abre tiene un mensaje esperándote.
+      </p>
+      <div class="counter" aria-live="polite">
+        Cofres abiertos: <span id="chestCount">0</span> / <span id="chestTotal">6</span>
+      </div>
+    </header>
+
+    <div class="game-wrap">
+      <canvas id="gameCanvas" role="img"
+        aria-label="Escena de juego: un gatito camina sobre una colina buscando cofres para abrir"></canvas>
+    </div>
+
+    <div id="messageBubble" class="message-bubble hidden" aria-live="polite"></div>
+
+    <p class="hint">Los cofres se abren solos cuando tu gatito pasa cerca. No hay forma de perder — solo explora 🌷</p>
+
+    <button id="resetBtn" class="reset-btn hidden" type="button">Reiniciar cofres 🔄</button>
+  </div>
+
+  <div id="finaleModal" class="finale hidden" role="dialog" aria-modal="true" aria-labelledby="finaleTitle">
+    <div class="finale-card">
+      <p id="finaleTitle" class="finale-title">Has abierto todos los cofres 💜</p>
+      <p class="finale-line">Cada mensaje era real: pensé en ti al hacer cada uno.</p>
+      <p class="finale-line finale-line--last">Espero que este juego pequeño te haya sacado una sonrisa. Cuídate mucho. 🫂</p>
+      <button id="finaleClose" class="finale-close" type="button">Cerrar</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
